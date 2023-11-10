@@ -48,11 +48,35 @@ class LinkedList:
             current_index += 1
             current_node = current_node.next
 
-    def deleteNode(self, data, index=None):
-        pass
+    def deleteNode(self, index):
+        current_node = self.head
+        current_index = 0
 
-    def findNode(self, data):
-        pass
+        # Delete the head node
+        if current_index == index:
+            self.head = current_node.next
+            return
+
+        previous_node = self.head
+        while current_node.next:
+            if current_index == index:
+                previous_node.next = current_node.next
+                return
+            previous_node = current_node
+            current_index += 1
+            current_node = current_node.next
+
+    def searchForNode(self, data):
+        current_node = self.head
+        current_index = 0
+
+        while current_node.next:
+            if current_node.data == data:
+                return current_index
+            current_index += 1
+            current_node = current_node.next
+        # Node not found
+        return None
 
     def reverseLinkedList(self):
         pass
@@ -127,3 +151,14 @@ if __name__ == '__main__':
     linked_list.printLinkedList()
     print()
 
+    # Delete node at index 0
+    linked_list.deleteNode(0)
+
+    linked_list.printLinkedList()
+    print()
+
+    # Delete node at index 4
+    linked_list.deleteNode(4)
+
+    linked_list.printLinkedList()
+    print()
