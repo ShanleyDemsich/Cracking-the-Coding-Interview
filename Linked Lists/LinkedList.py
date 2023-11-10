@@ -79,7 +79,16 @@ class LinkedList:
         return None
 
     def reverseLinkedList(self):
-        pass
+        previous_node = None
+        current_node = self.head
+
+        while current_node is not None:
+            next_node = current_node.next
+            current_node.next = previous_node
+            previous_node = current_node
+            current_node = next_node
+
+        self.head = previous_node
 
     def printLinkedList(self):
         current_node = self.head
@@ -168,3 +177,10 @@ if __name__ == '__main__':
 
     # Search for 4 in the linked list
     print(linked_list.searchForNode(4))
+    print()
+
+    # Reverse Linked list
+    linked_list.reverseLinkedList()
+
+    linked_list.printLinkedList()
+    print()
