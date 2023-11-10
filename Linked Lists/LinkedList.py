@@ -10,8 +10,12 @@ class LinkedList:
 
     def insertNodeAtBegin(self, value):
         new_node = Node(value)
-        new_node.next = self.head
-        self.head = new_node
+        if self.head is None:
+            new_node.next = self.head
+            return
+        else:
+            new_node.next = self.head
+            self.head = new_node
 
     def insertNodeAtEnd(self, value):
         pass
