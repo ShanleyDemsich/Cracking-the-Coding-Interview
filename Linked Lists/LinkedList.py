@@ -38,7 +38,15 @@ class LinkedList:
         current_node.next = new_node
 
     def updateNode(self, value, index):
-        pass
+        current_node = self.head
+        current_index = 0
+
+        while current_node.next:
+            if current_index == index:
+                current_node.data = value
+                return
+            current_index += 1
+            current_node = current_node.next
 
     def deleteNode(self, data, index=None):
         pass
@@ -109,6 +117,12 @@ if __name__ == '__main__':
 
     # Insert node at an index of the linked list
     linked_list.insertNode(6, 3)
+
+    linked_list.printLinkedList()
+    print()
+
+    # Update the node at index 3 with the new value 4
+    linked_list.updateNode(4, 3)
 
     linked_list.printLinkedList()
     print()
