@@ -162,3 +162,9 @@ if __name__ == '__main__':
 
     linked_list.printLinkedList()
     print()
+
+    # Search for 7 in the linked list
+    print(linked_list.searchForNode(7))
+
+    # Search for 4 in the linked list
+    print(linked_list.searchForNode(4))
