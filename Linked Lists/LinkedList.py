@@ -103,26 +103,88 @@ class DoublyLinkedList:
     def __init__(self):
         self.head = None
 
-    def insertNodeAtBegin(self, value):
-        pass
+    def insertNode(self, data, index=None):
+        new_node = Node(data)
 
-    def insertNodeAtEnd(self, value):
-        pass
+        # If the linked list is empty, set new node as the head
+        if self.head is None:
+            self.head = new_node
+            return
+
+        current_node = self.head
+        current_index = 0
+
+        # Insert new node as the new head of the linked list
+        if current_index == index:
+            self.head.prev = new_node
+            new_node.next = self.head
+            self.head = new_node
+            return
+
+        # Insert at the given index of the linked list
+        while current_node.next:
+            if current_index == index:
+                new_node.prev = current_node
+                new_node.next = current_node.next
+                current_node.next = new_node
+                return
+            current_index += 1
+            current_node = current_node.next
+
+        # Insert at the end of the linked list
+        current_node.next = new_node
+        new_node.prev = current_node
 
     def updateNode(self, value, index):
-        pass
+        current_node = self.head
+        current_index = 0
 
-    def removeFirstNode(self):
-        pass
+        while current_node.next:
+            if current_index == index:
+                current_node.data = value
+                return
+            current_index += 1
+            current_node = current_node.next
 
-    def removeAtIndex(self, index):
-        pass
+    def deleteNode(self, index):
+        current_node = self.head
+        current_index = 0
 
-    def removeNode(self, data):
-        pass
+        # Delete the head node
+        if current_index == index:
+            self.head = current_node.next
+            current_node.prev = None
+            return
+
+        previous_node = self.head
+        while current_node.next:
+            if current_index == index:
+                previous_node.next = current_node.next
+                current_node.next.prev = previous_node
+                return
+            previous_node = current_node
+            current_index += 1
+            current_node = current_node.next
+
+    def searchForNode(self, data):
+        current_node = self.head
+        current_index = 0
+
+        while current_node.next:
+            if current_node.data == data:
+                return current_index
+            current_index += 1
+            current_node = current_node.next
+        # Node not found
+        return None
 
     def printLinkedList(self):
-        pass
+        current_node = self.head
+        print(current_node.data)
+
+        while current_node.next:
+            current_node = current_node.next
+            print(current_node.data)
 
 
 if __name__ == '__main__':
